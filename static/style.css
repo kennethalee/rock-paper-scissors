@@ -4,7 +4,7 @@
     padding: 0;
 }
 
-/* Centering page content */
+/* Index page */
 body {
     display: flex;
     justify-content: center;
@@ -52,3 +52,53 @@ choice-button {
 .choice-button:hover {
     cursor: pointer;
 }
+
+/* Results page */
+.result-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.choices-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px;
+    gap: 50px;
+}
+
+.choice img {
+width: 150px;
+height: 150px;
+object-fit: contain;
+}
+
+.result-text {
+font-size: 2rem;
+margin: 20px 0;
+}
+
+.play-again-button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.play-again-button img {
+    width: 150px;
+    height: auto;
+}
+
+.play-again-button:hover {
+    transform: scale(1.1)
+}
+

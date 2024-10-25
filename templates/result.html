@@ -4,12 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Game Result</h1>
-    <p>You chose {{ player_choice }}</p>
-    <p>Computer chose {{ computer_choice }}</p>
-    <h2>{{ result.capitalize() }}!</h2>
-    <a href="/">Play Again</a>
+    <div>
+        <h1>Result</h1>
+
+        <div class="result-container">
+            <div class="choice">
+                <h3>You Chose</h3>
+                <img src="{{ url_for('static', filename='images/' + player_choice + '.png') }}" alt="{{ player_choice }}">
+            </div>
+            <div class="choice">
+                <h3>Computer Chose</h3>
+                <img src="{{ url_for('static', filename='images/' + computer_choice + '.png') }}" alt="{{ computer_choice }}">
+            </div>
+        </div>
+
+        <h2 class="result-text">{{ result.capitalize() }}</h2>
+
+        <form action="/" method="GET">
+            <button type="submit" class="play-again-button">
+                <img src="{{ url_for('static', filename='play_again.png') }}" alt="Play Again">
+            </button>
+        </form>
+    </div>
+
+    {% if result == 'win' %}
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        confetti({
+            particleCount: 100;
+            spread: 70;
+            origin: { y : 0.6 }
+    </script>
+    {% endif %}
 </body>
 </html>
