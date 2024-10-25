@@ -1,0 +1,54 @@
+/* Defaulting the page */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Centering page content */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4
+}
+
+.game-container {
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+/* Style for images */
+.choice-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+choice-button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.choice-button img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.choice-button:hover {
+    cursor: pointer;
+}
