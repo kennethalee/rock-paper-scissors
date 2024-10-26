@@ -14,14 +14,14 @@ def determine_winner(player, computer):
     :return:
     """
     if player == computer:
-        return 'tie'
+        return "It's a Tie!"
     elif (
         player == 'rock' and computer == 'scissors' or
         player == 'paper' and computer == 'rock' or
         player == 'scissor' and computer == 'paper'
-    ): return 'win'
+    ): return 'You Win!'
     else:
-        return 'lose'
+        return 'You Lose :('
 
 @app.route('/')
 def index():

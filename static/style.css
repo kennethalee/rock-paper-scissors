@@ -19,7 +19,7 @@ body {
     text-align: center;
 }
 
-h1 {
+.   h1 {
     margin-bottom: 20px;
 }
 
@@ -57,10 +57,9 @@ choice-button {
 .result-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
     text-align: center;
+    margin-top: 50px;
 }
 
 .choices-container {
@@ -72,30 +71,36 @@ choice-button {
 }
 
 .choice img {
-width: 150px;
-height: 150px;
-object-fit: contain;
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
 }
 
 .result-text {
-font-size: 2rem;
-margin: 20px 0;
+    font-size: 1.5rem;
+    margin: 20px;
+}
+
+.play-again-form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 .play-again-button {
     border: none;
     background-color: transparent;
-    padding: 0;
     cursor: pointer;
     outline: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 0;
+    margin-top: 20px;
 }
 
 .play-again-button img {
-    width: 150px;
+    width: 50px;
     height: auto;
+    transition: transform 0.2 ease;
 }
 
 .play-again-button:hover {

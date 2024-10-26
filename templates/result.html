@@ -8,7 +8,7 @@
 </head>
 <body>
     <div>
-        <h1>Result</h1>
+        <h1 class="result-container">Result</h1>
 
         <div class="result-container">
             <div class="choice">
@@ -21,23 +21,22 @@
             </div>
         </div>
 
-        <h2 class="result-text">{{ result.capitalize() }}</h2>
+        <h2 class="result-text">{{ result }}</h2>
 
-        <form action="/" method="GET">
+        <form action="/" method="GET" class="play-again-form">
             <button type="submit" class="play-again-button">
-                <img src="{{ url_for('static', filename='play_again.png') }}" alt="Play Again">
+                <img src="{{ url_for('static', filename='images/play_again.png') }}" alt="Play Again">
             </button>
         </form>
     </div>
 
-    {% if result == 'win' %}
+    <!-- Load the confetti library and main JavaScript file -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}" type="module"></script>
+
+    <!-- Pass the game result to JavaScript as a data attribute -->
     <script>
-        confetti({
-            particleCount: 100;
-            spread: 70;
-            origin: { y : 0.6 }
+        document.body.setAttribute('data-result', '{{ result }}');
     </script>
-    {% endif %}
 </body>
 </html>
