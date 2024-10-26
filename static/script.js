@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Trigger confetti if the result is a win
     if (result === 'You Win!') {
-        console.log("Confetti triggered for a win!"); // Debugging message
         triggerConfetti();
     }
 });

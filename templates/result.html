@@ -30,11 +30,9 @@
         </form>
     </div>
 
-    <!-- Load the confetti library and main JavaScript file -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="{{ url_for('static', filename='script.js') }}" type="module"></script>
 
-    <!-- Pass the game result to JavaScript as a data attribute -->
     <script>
         document.body.setAttribute('data-result', '{{ result }}');
     </script>
