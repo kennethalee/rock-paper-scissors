@@ -103,6 +103,21 @@ choice-button {
     transition: transform 0.2 ease;
 }
 
+.logout-button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.logout-button img {
+    width: 50px;
+    height: auto;
+    transition: transform 0.2 ease;
+}
+
 .play-again-button:hover {
     transform: scale(1.1)
 }
