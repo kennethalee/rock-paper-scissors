@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>{{ user.username }}'s Profile</title>
 </head>
 <body>
-$END$
+  <h2>Welcome, {{ user.username }}!</h2>
+  <h3>Game History</h3>
+  <table>
+    <tr>
+      <th>Player Choice</th>
+      <th>Computer Choice</th>
+      <th>Result</th>
+      <th>Time</th>
+    </tr>
+    {% for game in games %}
+    <tr>
+      <td>{{ game.player_choice</td>
+      <td>{{ game.computer_choice }}</td>
+      <td>{{ game.result }}</td>
+      <td>{{ game.timestamp }}</td>
+    </tr>
+    {% endfor %}
+  </table>
 </body>
 </html>

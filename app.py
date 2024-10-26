@@ -37,3 +37,34 @@ def register():
         db.session.commit()
 
     return render_template('register.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        user = User.query.filter_by(username=username).first()
+
+        if user and check_password_hash(user.password, password):
+            login_user(user)
+            flash('Logged in successfully!')
+            return redirect(url_for('profile'))
+        else:
+            flash('Login failed. Check your username and password')
+
+    return render_template('login.html')
+
+@app.route('/profile')
+@login_required
+def profile():
+    user = User.query.get(current_user.id)
+    games = Game.query.filter_by(user_id=user.id).all()
+    return render_template('profile.html', user=user, games=games)
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('You have been logged out.')
+    return redirect(url_for('login'))
