@@ -19,7 +19,7 @@ body {
     text-align: center;
 }
 
-.   h1 {
+.h1 {
     margin-bottom: 20px;
 }
 
@@ -81,6 +81,17 @@ choice-button {
     margin: 20px;
 }
 
+.win {
+    color: green;
+    font-weight: bold;
+}
+
+.lose {
+    color: red;
+    font-weight: bold;
+}
+
+/* Play Again */
 .play-again-form {
     width: 100%;
     display: flex;
@@ -103,22 +114,55 @@ choice-button {
     transition: transform 0.2 ease;
 }
 
+.play-again-button:hover {
+    transform: scale(1.1)
+}
+
+/* Logout */
 .logout-button {
     border: none;
     background-color: transparent;
     cursor: pointer;
     outline: none;
     padding: 0;
-    margin-top: 20px;
 }
 
 .logout-button img {
-    width: 50px;
+    width: 30px;
     height: auto;
     transition: transform 0.2 ease;
 }
 
-.play-again-button:hover {
-    transform: scale(1.1)
+.logout-form {
+    position: absolute;
+    top : 20px;
+    left: 20px;
 }
+
+/* Profile */
+
+.profile-button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+}
+
+.profile-form {
+    position: absolute;
+    top : 20px;
+    left: 20px;
+}
+
+.profile-button img {
+    width: 30px;
+    height: auto;
+    transition: transform 0.2 ease;
+}
+
+
+
+
+
 

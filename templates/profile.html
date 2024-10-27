@@ -9,19 +9,24 @@
   <h3>Game History</h3>
   <table>
     <tr>
-      <th>Player Choice</th>
-      <th>Computer Choice</th>
+      <th>Player</th>
+      <th>Computer</th>
       <th>Result</th>
       <th>Time</th>
     </tr>
     {% for game in games %}
     <tr>
-      <td>{{ game.player_choice</td>
-      <td>{{ game.computer_choice }}</td>
+      <td>{{ game.player_choice.capitalize() }}</td>
+      <td>{{ game.computer_choice.capitalize() }}</td>
       <td>{{ game.result }}</td>
       <td>{{ game.timestamp }}</td>
     </tr>
     {% endfor %}
   </table>
+  <div>
+    <form action="{{ url_for('home') }}" method="GET" class="play-form">
+      <button type="submit" class="play-button">Play</button>
+    </form>
+  </div>
 </body>
 </html>

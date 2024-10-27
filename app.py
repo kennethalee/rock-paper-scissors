@@ -16,10 +16,6 @@ login_manager.login_view = 'login'
 
 @app.route('/')
 def home():
-    if not User.query.first():
-        return redirect(url_for('register'))
-    if not current_user.is_authenticated:
-        return redirect(url_for('login'))
     return render_template('index.html')
 
 @login_manager.user_loader
@@ -36,7 +32,6 @@ def login():
 
         if user and check_password_hash(user.password, password):
             login_user(user)
-            flash('Logged in successfully!')
             return redirect(url_for('home'))
         else:
             flash('Login failed. Check your username and password')
@@ -80,21 +75,21 @@ def logout():
     return redirect(url_for('login'))
 
 @app.route('/play', methods=['POST'])
-@login_required
 def play():
     player_choice = request.form.get('choice')
     computer_choice = main.get_computer_choice()
     result = main.determine_winner(player_choice, computer_choice)
 
-    # Save result to database
-    new_game = Game(
-        user_id=current_user.id,
-        player_choice=player_choice,
-        computer_choice=computer_choice,
-        result=result
-    )
-    db.session.add(new_game)
-    db.session.commit()
+    # Save result to database only if logged in user
+    if current_user.is_authenticated:
+        new_game = Game(
+            user_id=current_user.id,
+            player_choice=player_choice,
+            computer_choice=computer_choice,
+            result=result
+        )
+        db.session.add(new_game)
+        db.session.commit()
 
     return render_template(
         'result.html', player_choice=player_choice,

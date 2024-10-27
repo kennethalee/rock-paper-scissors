@@ -21,7 +21,9 @@
             </div>
         </div>
 
-        <h2 class="result-text">{{ result }}</h2>
+        <h2 class="result-text {% if 'Win' in result %}win{% elif 'Lose' in result %}lose{% endif %}">
+            {{ result }}
+        </h2>
 
         <form action="/" method="GET" class="play-again-form">
             <button type="submit" class="play-again-button">
@@ -29,7 +31,6 @@
             </button>
         </form>
 
-        <--! Logout button -->
         <form action="{{ url_for('logout') }}" method="GET" class="logout-form">
             <button type="submit" class="logout-button">
                 <img src="{{ url_for('static', filename='images/logout.png') }}" alt="Logout">
