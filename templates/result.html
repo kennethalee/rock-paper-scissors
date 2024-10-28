@@ -25,6 +25,10 @@
             {{ result }}
         </h2>
 
+        <div class="login-prompt">
+            <a href="{{ url_for('login') }}">Login </a>to save your results!
+        </div>
+
         <form action="/" method="GET" class="play-again-form">
             <button type="submit" class="play-again-button">
                 <img src="{{ url_for('static', filename='images/play_again.png') }}" alt="Play Again">

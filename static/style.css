@@ -161,6 +161,23 @@ choice-button {
     transition: transform 0.2 ease;
 }
 
+/* Login Prompt */
+.login-prompt {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.login-prompt a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-prompt a:hover {
+    text-decoration: none;
+}
+
+
 
 
 

@@ -23,9 +23,13 @@
     <button type="submit">Login</button>
   </form>
 
-  <!-- Register Button -->
-  <p>Don't have an account? <a href="{{ url_for('register') }}">Register!</a></p>
-  <p><a href="{{ url_for('home') }}">Play </a>Without signing in!</p>
+  <div class="register-prompt">
+    Don't have an account? <a href="{{ url_for('register') }}">Register!</a>
+  </div>
+
+  <div class="login-prompt">
+    <a href="{{ url_for('home') }}">Play </a>Without signing in!
+  </div>
 
   <style>
     .flashes {
@@ -38,6 +42,36 @@
       margin: 8px 0;
       border: 1px solid red;
       background-color: #fdd;
+    }
+
+    .login-prompt {
+      text-align: left;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .login-prompt a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .login-prompt a:hover {
+      text-decoration: none;
+    }
+
+    .register-prompt {
+      text-align: left;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .register-prompt a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .register-prompt a:hover {
+      text-decoration: none;
     }
   </style>
 </body>
