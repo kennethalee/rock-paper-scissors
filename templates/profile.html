@@ -9,17 +9,17 @@
   <h3>Game History</h3>
   <table>
     <tr>
+      <th>Date</th>
       <th>Player</th>
       <th>Computer</th>
       <th>Result</th>
-      <th>Time</th>
     </tr>
     {% for game in games %}
     <tr>
+      <td>{{ game.timestamp.strftime('%Y-%m-%d') }}</td>
       <td>{{ game.player_choice.capitalize() }}</td>
       <td>{{ game.computer_choice.capitalize() }}</td>
       <td>{{ game.result }}</td>
-      <td>{{ game.timestamp }}</td>
     </tr>
     {% endfor %}
   </table>
@@ -32,9 +32,18 @@
      <button type="submit" class="logout-button">Logout</button>
    </form>
   </div>
+
   <form action="{{url_for('clear_history') }}" method="POST">
-    <button type="submit">Clear Hisotry</button>
+    <button type="submit">Clear History</button>
   </form>
+
+  <form action="{{ url_for('delete_account') }}" method="POST">
+    <button type="submit">Delete Account</button>
+  </form>
+
+  <a href="{{ url_for('export_history') }}" download>
+    <button type="button">Export History to CSV</button>
+  </a>
 
 </body>
 </html>

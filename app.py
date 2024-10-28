@@ -1,9 +1,10 @@
-from flask import Flask, render_template, redirect, url_for, request, flash
-from werkzeug.security import generate_password_hash, check_password_hash
+from flask import Flask, render_template, redirect, url_for, request, flash, Response
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
-
-from models.models import db, User, Game
+from werkzeug.security import generate_password_hash, check_password_hash
+from io import StringIO
+import csv
 import main
+from models.models import db, User, Game
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Jancokasu123'
@@ -85,6 +86,36 @@ def clear_history():
     Game.query.filter_by(user_id=current_user.id).delete()
     db.session.commit()
     return redirect(url_for('profile'))
+
+@app.route('/export_history', methods=['GET'])
+@login_required
+def export_history():
+    # Current user game history
+    games = Game.query.filter_by(user_id=current_user.id).all()
+
+    output = StringIO()
+    writer = csv.writer(output)
+
+    writer.writerow(['Date', 'Player', 'Computer', 'Result'])
+
+    for game in games:
+        date = game.timestamp.strftime('%Y-%m-%d')
+        writer.writerow([date, game.player_choice, game.computer_choice, game.result])
+
+    output.seek(0)  # move to start of file
+
+    return Response(
+        output, mimetype='text/csv', headers={"Content-Disposition": "attachment;filename=game_history.csv"}
+    )
+
+@app.route('/delete_account', methods=["POST"])
+@login_required
+def delete_account():
+    Game.query.filter_by(user_id=current_user.id).delete()
+    User.query.filter_by(id=current_user.id).delete()
+    db.session.commit()
+    flash('Your account has been deleted')
+    return redirect(url_for('login'))
 
 @app.route('/play', methods=['POST'])
 def play():
