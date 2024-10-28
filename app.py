@@ -79,6 +79,13 @@ def logout():
     flash('You have been logged out.')
     return redirect(url_for('login'))
 
+@app.route('/clear_history', methods=["POST"])
+@login_required
+def clear_history():
+    Game.query.filter_by(user_id=current_user.id).delete()
+    db.session.commit()
+    return redirect(url_for('profile'))
+
 @app.route('/play', methods=['POST'])
 def play():
     player_choice = request.form.get('choice')
