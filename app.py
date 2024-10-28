@@ -53,7 +53,7 @@ def register():
         # Check if username exists
         if User.query.filter_by(username=username).first():
             flash('Username unavailable')
-            return redirect(url_for('register'))
+            return render_template('register.html')
 
         # Hash password and create new username
         hashed_password = generate_password_hash(password)

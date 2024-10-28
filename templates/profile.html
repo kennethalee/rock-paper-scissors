@@ -19,7 +19,15 @@
       <td>{{ game.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
       <td>{{ game.player_choice.capitalize() }}</td>
       <td>{{ game.computer_choice.capitalize() }}</td>
-      <td>{{ game.result }}</td>
+      <td>
+        {% if 'Win' in game.result %}
+            <span style="color:green">Win</span>
+        {% elif 'Lose' in game.result %}
+            <span style="color:red">Lose</span>
+        {% elif 'Tie' in game.result %}
+            <span>Tie</span>
+        {% endif %}
+      </td>
     </tr>
     {% endfor %}
   </table>
