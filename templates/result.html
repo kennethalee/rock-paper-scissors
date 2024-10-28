@@ -25,9 +25,15 @@
             {{ result }}
         </h2>
 
-        <div class="login-prompt">
-            <a href="{{ url_for('login') }}">Login </a>to save your results!
-        </div>
+        {% if current_user.is_authenticated %}
+            <p class="view-results-link">
+                <a href="{{ url_for('profile') }}">View Results</a>
+            </p>
+        {% else %}
+            <p class="login-prompt">
+                <a href="{{ url_for('login') }}">Login</a> to save your results!
+            </p>
+        {% endif %}
 
         <form action="/" method="GET" class="play-again-form">
             <button type="submit" class="play-again-button">

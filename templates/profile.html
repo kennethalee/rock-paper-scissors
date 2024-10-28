@@ -16,7 +16,7 @@
     </tr>
     {% for game in games %}
     <tr>
-      <td>{{ game.timestamp.strftime('%Y-%m-%d') }}</td>
+      <td>{{ game.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
       <td>{{ game.player_choice.capitalize() }}</td>
       <td>{{ game.computer_choice.capitalize() }}</td>
       <td>{{ game.result }}</td>

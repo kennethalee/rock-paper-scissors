@@ -118,6 +118,22 @@ choice-button {
     transform: scale(1.1)
 }
 
+/* View/login results prompt */
+.view-results-link {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.view-results-link a {
+    color: #007bff;
+    text-decoration: none
+}
+
+.view-results-link a:hover {
+    text-decoration: none;
+}
+
 /* Logout */
 .logout-button {
     border: none;

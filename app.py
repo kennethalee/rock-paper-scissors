@@ -70,7 +70,7 @@ def register():
 @login_required
 def profile():
     user = User.query.get(current_user.id)
-    games = Game.query.filter_by(user_id=user.id).all()
+    games = Game.query.filter_by(user_id=user.id).order_by(Game.timestamp.desc())
     return render_template('profile.html', user=user, games=games)
 
 @app.route('/logout')
