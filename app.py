@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request, flash, Response
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+from itsdangerous import URLSafeTimedSerializer
 from io import StringIO
 import csv
 import main
@@ -65,6 +66,51 @@ def register():
         return redirect(url_for('login'))
 
     return render_template('register.html')
+
+@app.route('/forgot_password', methods=['GET', 'POST'])
+def forgot_password():
+    if request.method == 'POST':
+        email = request.form['email']
+        user = User.query.filter_by(email=email).first()
+
+        if user:
+            token = generate_reset_token(user)
+            send_reset_email(user, token)
+            flash('A password reset link has been sent to your email.')
+        else:
+            flash('No account associated with that email.')
+
+        return redirect(url_for('login'))
+    return render_template('forgot_password.html')
+
+def generate_reset_token(user):
+    serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+    return serializer.dumps(user.email, salt='password-reset-salt')
+
+def send_reset_email(user, token):
+    reset_url = url_for('reset_password', token=token, _external=True)
+    send_email(to=user.email, subject="Password Reset Request", body=f"Click the link to reset your password: {reset_url}")
+
+@app.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+    try:
+        email = serializer.loads(token, salt='password-reset-salt', max_age=3600)
+    except:
+        flash('The reset link is invalid or has expired.')
+        return redirect(url_for('forgot_password'))
+
+    if request.method == 'POST':
+        password = request.form['password']
+        user = User.query.filter_by(email=email).first()
+
+        if user:
+            user.password = generate_password_hash(password)
+            db.session.commit()
+            flash('Your password has been changed')
+            return redirect(url_for('login'))
+
+    return render_template('reset_password.html')
 
 @app.route('/profile')
 @login_required

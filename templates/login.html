@@ -27,6 +27,10 @@
     Don't have an account? <a href="{{ url_for('register') }}">Register!</a>
   </div>
 
+  <div class="forgot-password">
+    <a href="{{ url_for('forgot_password') }}">Forgot Password?</a>
+  </div>
+
   <div class="login-prompt">
     <a href="{{ url_for('home') }}">Play </a>without signing in!
   </div>
@@ -71,6 +75,21 @@
     }
 
     .register-prompt a:hover {
+      text-decoration: none;
+    }
+
+    .forgot-password {
+      text-align: left;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .forgot-password a{
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .forgot-password a:hover {
       text-decoration: none;
     }
   </style>
